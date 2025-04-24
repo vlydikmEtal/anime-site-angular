@@ -1,0 +1,27 @@
+<div class="anime__sidebar">
+  <div class="anime__sidebar-view">
+    <div class="anime__sidebar-title">
+      <h2>Top View</h2>
+    </div>
+
+    @for(anime of animeList; track anime.id) {
+    <div class="anime__sidebar-gallery">
+      <div class="anime__sidebar-item">
+        <div
+          class="anime__sidebar-image"
+          [ngStyle]="{
+            'background-image': 'url(' + anime.images.jpg.image_url + ')'
+          }"
+        ></div>
+        <div class="anime__card-raiting">
+          {{ anime.score | number : "1.1-1" }}
+        </div>
+        <div class="anime__card-view">
+          <i class="fas fa-eye"></i> {{ anime.members }}
+        </div>
+        <h3>{{ getEnglishTitle(anime) }}</h3>
+      </div>
+    </div>
+    }
+  </div>
+</div>

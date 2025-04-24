@@ -1,0 +1,153 @@
+.section__anime {
+  padding: 80px 0;
+}
+
+.anime__content-wrapper {
+  display: flex;
+}
+
+.anime__wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 66.666667%;
+  max-width: 66.666667%;
+  padding-right: 15px;
+}
+.anime__genre-wrapper {
+  margin-bottom: 40px;
+}
+
+.anime__genre-title {
+  margin-bottom: 30px;
+  h2 {
+    color: #fff;
+    font-weight: 600;
+    line-height: 21px;
+    text-transform: uppercase;
+    padding-left: 20px;
+    position: relative;
+    font-family: "Oswald", sans-serif;
+    &::after {
+      position: absolute;
+      left: 0;
+      top: -6px;
+      height: 32px;
+      width: 4px;
+      background: #e53637;
+      content: "";
+    }
+  }
+}
+
+.anime__genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.anime__card {
+  width: 100%;
+  max-width: 230px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+  }
+
+  h3 {
+    color: #fff;
+    font-weight: 600;
+    line-height: 21px;
+    text-transform: uppercase;
+    position: relative;
+    font-family: "Oswald", sans-serif;
+  }
+}
+
+.anime__card-image {
+  width: 100%;
+  height: 325px;
+  position: relative;
+  border-radius: 5px;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.4) 23%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    border-radius: 5px;
+    z-index: 1;
+  }
+}
+
+.anime__card-raiting {
+  position: absolute;
+  font-size: 13px;
+  color: #fff;
+  background: #e53637;
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 4px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 2;
+}
+
+.anime__card-view {
+  font-size: 13px;
+  color: #fff;
+  background: #3d3d3d;
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+}
+
+.anime__card-text {
+  padding-top: 20px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+
+  ul {
+    display: flex;
+    margin-bottom: 10px;
+    gap: 5px;
+    flex-wrap: wrap;
+
+    li {
+      list-style: none;
+      font-size: 10px;
+      color: #fff;
+      font-weight: 700;
+      padding: 3px 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      display: inline-block;
+    }
+  }
+}
+
+app-top-anime {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+  padding-left: 15px;
+}

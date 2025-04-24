@@ -1,0 +1,39 @@
+<section class="section__anime">
+  <div class="anime__content-wrapper" *ngIf="animeList.length > 0">
+    <div class="anime__wrapper">
+      @for (genre of objectKeys(groupAnimeByGenre(animeList)); track genre) {
+      <div class="anime__genre-wrapper">
+        <div class="anime__genre-title">
+          <h2>{{ genre }}</h2>
+        </div>
+
+        <div class="anime__genre-list">
+          @for (anime of groupAnimeByGenre(animeList)[genre]; track anime.id) {
+          <div class="anime__card">
+            <div class="anime__card-image">
+              <img [src]="anime.images.jpg.image_url" [alt]="anime.title" />
+              <div class="anime__card-raiting">
+                {{ anime.score | number : "1.1-1" }}
+              </div>
+              <div class="anime__card-view">
+                <i class="fas fa-eye"></i> {{ anime.members }}
+              </div>
+            </div>
+            <div class="anime__card-text">
+              <ul class="anime__card-genres">
+                @for (genre of getGenres(anime); track genre) {
+                <li>{{ genre }}</li>
+                }
+              </ul>
+              <h3>{{ getEnglishTitle(anime) }}</h3>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+      }
+    </div>
+
+    <app-top-anime></app-top-anime>
+  </div>
+</section>
