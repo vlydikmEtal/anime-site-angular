@@ -1,21 +1,44 @@
 import { CardService } from './../../data/services/card.service';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TopAnimeComponent } from '../top-anime/top-anime.component';
+
+interface Anime {
+  mal_id: number;
+  title: string;
+  images: { jpg: { image_url: string } };
+  score: number;
+  members: number;
+  genres: { mal_id: number; name: string }[];
+  titles: { type: string; title: string }[];
+}
 
 @Component({
   selector: 'app-anime-card',
   standalone: true,
-  imports: [CommonModule, TopAnimeComponent],
+  imports: [CommonModule],
   templateUrl: './anime-card.component.html',
   styleUrls: ['./anime-card.component.scss'],
 })
 export class AnimeCardComponent {
-  animeList: any[] = [];
+  animeList: Anime[] = [];
 
-  groupAnimeByGenre(animeList: any[]) {
-    return animeList.reduce((acc: any, anime: any) => {
-      anime.genres.forEach((genre: any) => {
+  constructor(private cardService: CardService, private router: Router) {}
+
+  ngOnInit() {
+    this.cardService.getTestAnime().subscribe({
+      next: (res: any) => {
+        this.animeList = res.data;
+      },
+      error: (err: any) => {
+        console.error('Error loading anime:', err);
+      },
+    });
+  }
+
+  groupAnimeByGenre(animeList: Anime[]): { [key: string]: Anime[] } {
+    return animeList.reduce((acc: any, anime: Anime) => {
+      anime.genres.forEach((genre: { name: string }) => {
         if (!acc[genre.name]) {
           acc[genre.name] = [];
         }
@@ -25,32 +48,24 @@ export class AnimeCardComponent {
     }, {});
   }
 
-  getGenres(anime: any): string[] {
-    return anime.genres.map((genre: any) => genre.name);
+  objectKeys(obj: any): string[] {
+    return Object.keys(obj);
   }
 
-  getEnglishTitle(anime: any): string {
-    const englishTitle = anime.titles.find((t: any) => t.type === 'English');
+  getGenres(anime: Anime): { mal_id: number; name: string }[] {
+    return anime.genres || [];
+  }
+
+  getEnglishTitle(anime: Anime): string {
+    const englishTitle = anime.titles?.find((t: any) => t.type === 'English');
     if (!englishTitle) return anime.title;
     return englishTitle.title.length > 20
       ? englishTitle.title.slice(0, 20) + '...'
       : englishTitle.title;
   }
 
-  objectKeys(obj: any) {
-    return Object.keys(obj);
-  }
-
-  constructor(private cardService: CardService) {}
-
-  ngOnInit() {
-    this.cardService.getTestAnime().subscribe({
-      next: (res: any) => {
-        this.animeList = res.data;
-      },
-      error: (err: any) => {
-        console.error('Ошибка при загрузке аниме:', err);
-      },
+  navigateToAnimeList(animeId: number) {
+    this.router.navigate(['/anime-list', animeId]).catch((err) => {
     });
   }
 }

@@ -1,4 +1,18 @@
-<app-header> </app-header>
-<div class="container">
-  <app-anime-card></app-anime-card>
-</div>
+<header class="header">
+  <app-header></app-header>
+</header>
+
+<main class="main">
+  <section class="main__content-section">
+    <div class="container">
+      <div class="main__content-inner">
+        <div class="main__content-left">
+          <ng-container>
+            <router-outlet [@routeAnimations]="prepareRoute(outlet)" #outlet="outlet"></router-outlet>
+          </ng-container>
+        </div>
+        <app-top-anime></app-top-anime>
+      </div>
+    </div>
+  </section>
+</main>

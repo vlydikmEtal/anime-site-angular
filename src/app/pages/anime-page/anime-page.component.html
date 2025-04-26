@@ -1,0 +1,21 @@
+<div *ngIf="anime" class="anime-page">
+  <div class="anime-page__banner">
+    <img [src]="anime.images.jpg.large_image_url" [alt]="anime.title" class="anime-page__banner-image" />
+    <div class="anime-page__info">
+      <h1 class="anime-page__title">{{ anime.title }}</h1>
+      <div class="anime-page__rating">
+        <span class="rating">Score: {{ anime.score }}</span>
+        <span class="rating">Members: {{ anime.members }}</span>
+      </div>
+      <div class="anime-page__genres">
+        <span *ngFor="let genre of anime.genres" class="genre">{{ genre.name }}</span>
+      </div>
+      <button class="anime-page__watch-btn" (click)="watchAnime()">Watch on YouTube</button>
+    </div>
+  </div>
+
+  <div class="anime-page__overview">
+    <h2>Overview</h2>
+    <p>{{ anime.synopsis }}</p>
+  </div>
+</div>

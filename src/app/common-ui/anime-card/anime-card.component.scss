@@ -1,18 +1,3 @@
-.section__anime {
-  padding: 80px 0;
-}
-
-.anime__content-wrapper {
-  display: flex;
-}
-
-.anime__wrapper {
-  display: flex;
-  flex-direction: column;
-  flex: 0 0 66.666667%;
-  max-width: 66.666667%;
-  padding-right: 15px;
-}
 .anime__genre-wrapper {
   margin-bottom: 40px;
 }
@@ -46,7 +31,7 @@
 }
 .anime__card {
   width: 100%;
-  max-width: 230px;
+  max-width: calc(100% / 3 - 20px);
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
